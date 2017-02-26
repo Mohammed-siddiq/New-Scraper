@@ -30,6 +30,7 @@ def semresult():
 
             print result
 
+            print result
             FileOps.writestudentresult(fp, result)
 
 
