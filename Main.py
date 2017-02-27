@@ -7,10 +7,18 @@ import BeautifulUsn
 def semresult():
     url = "http://www.fastvturesults.com/check_new_results/"
 
-    collegecode = raw_input("Enter the college\nex:\tRnsit:1rn\t")
-    year = raw_input("Enter the year")
+    # college name for the file
+    collegename=raw_input("Enter College Name\n")
+    collegecode = raw_input("Enter the college Code\n")
+    year = raw_input("Enter the year\n")
     branch = raw_input("Enter the branch code\n")
-    fp = FileOps.createnew("Cse6sem.csv")
+    semester = raw_input("Enter the Semester\n")
+
+    # generating a generic file name
+
+    filename = collegename+"_"+year+"_"+branch+"_"+semester+"sem.csv"
+    # create a file using the above filename
+    fp = FileOps.createnew(filename)
 
     BeautifulUsn.gencollege(collegecode, year, branch, url)
     for i in range(120):
@@ -18,8 +26,8 @@ def semresult():
         page = EstablishConnection.openwebpage(studenturl)
 
         soup = Scraper.page(page)
-
-        resulturl, name = Scraper.semresultlink('6', soup)
+        # added semester
+        resulturl, name = Scraper.semresultlink(semester, soup)
 
         if resulturl != 'none':
             page = EstablishConnection.openwebpage(resulturl)
@@ -30,10 +38,6 @@ def semresult():
 
             print result
 
-
             FileOps.writestudentresult(fp, result)
-
-
-# page-url
 
 semresult()
