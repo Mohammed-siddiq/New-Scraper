@@ -6,20 +6,32 @@ import BeautifulUsn
 
 def semresult():
     url = "http://www.fastvturesults.com/check_new_results/"
+    folderpath="College_results"
+    FileOps.createdirectoryifnotexist(folderpath)
+
 
     # college name for the file
     collegename=raw_input("Enter College Name :\n")
+    folderpath = folderpath + "//"+collegename
+    FileOps.createdirectoryifnotexist(folderpath)
     collegecode = raw_input("Enter the college Code : \n")
     year = raw_input("Enter the year : \n")
+    folderpath = folderpath + "//" + year
+    FileOps.createdirectoryifnotexist(folderpath)
     branch = raw_input("Enter the branch code : \n")
+    folderpath = folderpath + "//" + branch
+    FileOps.createdirectoryifnotexist(folderpath)
     semester = raw_input("Enter the Semester : \n")
     attempt = raw_input("Enter the attempt :\n")
+    #  -1 because in gennexturl() the value is incremented and then url is generated
+
     BeautifulUsn.start = int(raw_input(" Enter the starting usn \n"))-1
     BeautifulUsn.end = int(raw_input(" Enter the ending usn \n"))
     range_usn = BeautifulUsn.end - BeautifulUsn.start
+    folderpath = folderpath + "//"
 
     # generating a generic file name
-    filename = collegename+"_"+year+"_"+branch+"_"+semester+"sem.csv"
+    filename = folderpath + collegename+"_"+year+"_"+branch+"_"+semester+"sem.csv"
     # create a file using the above filename
     fp = FileOps.createnew(filename)
 
