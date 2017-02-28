@@ -8,11 +8,12 @@ def semresult():
     url = "http://www.fastvturesults.com/check_new_results/"
 
     # college name for the file
-    collegename=raw_input("Enter College Name\n")
-    collegecode = raw_input("Enter the college Code\n")
-    year = raw_input("Enter the year\n")
-    branch = raw_input("Enter the branch code\n")
-    semester = raw_input("Enter the Semester\n")
+    collegename=raw_input("Enter College Name :\n")
+    collegecode = raw_input("Enter the college Code : \n")
+    year = raw_input("Enter the year : \n")
+    branch = raw_input("Enter the branch code : \n")
+    semester = raw_input("Enter the Semester : \n")
+    attempt = raw_input("Enter the attempt :\n")
 
     # generating a generic file name
 
@@ -27,7 +28,7 @@ def semresult():
 
         soup = Scraper.page(page)
         # added semester
-        resulturl, name = Scraper.semresultlink(semester, soup)
+        resulturl, name = Scraper.semresultlink(semester, attempt, soup)
 
         if resulturl != 'none':
             page = EstablishConnection.openwebpage(resulturl)
@@ -39,5 +40,6 @@ def semresult():
             print result
 
             FileOps.writestudentresult(fp, result)
+
 
 semresult()

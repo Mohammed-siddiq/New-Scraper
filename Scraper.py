@@ -7,7 +7,7 @@ def page(p):
     return s
 
 
-def semresultlink(sem, soup):
+def semresultlink(sem, attempt, soup):
     try:
         resulttab = soup.find(id="scell")
         trs = resulttab.find_all("tr")
@@ -17,9 +17,11 @@ def semresultlink(sem, soup):
     resulturl = 'none'
     name = soup.find('div', class_="col-xs-12 box-red-round lead text-center").text.strip()
     for tr in trs:
-        tds = tr.find_all('td')
-        for td in tds:
-            if td.text.strip() == sem:
+        try:
+            tds = tr.find_all('td')
+            sem_td = tds[0]
+            attempt_td=tds[1]
+            if sem_td.text.strip() == sem and attempt_td.text.strip() == attempt :
                 links = tr.find_all('a', string='Result')
                 for a in links:
                     resulturl = a['href']
@@ -27,8 +29,8 @@ def semresultlink(sem, soup):
                     break
             if flag:
                 break
-        if flag:
-            break
+        except Exception,e:
+            continue
 
     return resulturl, name
 
