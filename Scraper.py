@@ -37,7 +37,7 @@ def semresultlink(sem, attempt, soup):
 
 def getresult(soup,n):
     resulttab = soup.find(id="scell")
-    trs = resulttab.find_all("tr", class_="success")
+    trs = resulttab.find_all("tr", {'class': ["success","danger"]})
     details = soup.find_all('p', style='font-size:16px;')
 
     name = []

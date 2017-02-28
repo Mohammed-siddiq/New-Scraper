@@ -14,15 +14,17 @@ def semresult():
     branch = raw_input("Enter the branch code : \n")
     semester = raw_input("Enter the Semester : \n")
     attempt = raw_input("Enter the attempt :\n")
+    BeautifulUsn.start = int(raw_input(" Enter the starting usn \n"))-1
+    BeautifulUsn.end = int(raw_input(" Enter the ending usn \n"))
+    range_usn = BeautifulUsn.end - BeautifulUsn.start
 
     # generating a generic file name
-
     filename = collegename+"_"+year+"_"+branch+"_"+semester+"sem.csv"
     # create a file using the above filename
     fp = FileOps.createnew(filename)
 
     BeautifulUsn.gencollege(collegecode, year, branch, url)
-    for i in range(120):
+    for i in range(range_usn):
         studenturl = BeautifulUsn.gennexturl()
         page = EstablishConnection.openwebpage(studenturl)
 

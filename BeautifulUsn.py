@@ -1,8 +1,8 @@
 
 
 url = ''
-counter = 0
-
+start =0
+end = 0
 
 def gencollege(collegename, branch, year, genericurl):
 
@@ -11,9 +11,11 @@ def gencollege(collegename, branch, year, genericurl):
 
 
 def gennexturl():
-    global counter
-    counter = counter+1
+    global start
+    global end
+    if start <= end:
+        start = start+1
 
-    return url + str(counter).zfill(3)
+    return url + str(start).zfill(3)
 
 
