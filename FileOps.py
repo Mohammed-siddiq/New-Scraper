@@ -1,8 +1,11 @@
 import csv
 import os
 
-def createnew(name):
-    fp = open(name, 'a+')
+def createnew(folderpath, name):
+    filepath = os.path.join(folderpath, name)
+    if not os.path.exists(folderpath):
+        os.makedirs(folderpath)
+    fp = open(filepath, 'a+')
     return fp
 
 
@@ -14,5 +17,5 @@ def writestudentresult(fp, result):
 
 def createdirectoryifnotexist(directoryname):
     if not os.path.exists(directoryname):
-        os.mkdir(directoryname)
+        os.makedirs(directoryname)
 
