@@ -19,3 +19,11 @@ def gennexturl():
     return url + str(start).zfill(3)
 
 
+def officialnexturl(baseurl):
+    global start
+    global end
+    if start <= end:
+        start = start + 1
+
+    return baseurl + str(start).zfill(3)
+
